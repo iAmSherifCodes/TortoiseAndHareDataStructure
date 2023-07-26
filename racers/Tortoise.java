@@ -3,14 +3,29 @@ package chapter7.TortoiseHare.racers;
 import chapter7.TortoiseHare.enums.TortoiseMoveType;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
+/**
+ * Tortoise contender
+ * @author SHERIF
+ * @version 1.0
+ */
 public class Tortoise {
     int position = BigDecimal.ONE.intValue();
 
-//    @Override
-//    public void move() {
-//        if (TortoiseMoveType.FAST_PLOD)
-//    }
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void move(int position){
+        if (position > 0 && position <= 5) move(TortoiseMoveType.FAST_PLOD);
+        else if (position > 5 && position < 8) move(TortoiseMoveType.SLIP);
+        else if (position >7 && position <=10) move(TortoiseMoveType.SLOW_POD);
+    }
 
     public void move(TortoiseMoveType tortoiseMoveType) {
         boolean outOfPosition = this.position < BigDecimal.ONE.intValue();
@@ -21,11 +36,12 @@ public class Tortoise {
             if (outOfPosition) resetMove();
         }
         else if(tortoiseMoveType.equals(TortoiseMoveType.SLOW_POD)){
-            this.position += 1;
+            this.position++;
         }
     }
 
     private void resetMove(){
         this.position = BigDecimal.ONE.intValue();
+
     }
 }
